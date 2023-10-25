@@ -13,15 +13,14 @@ public class TimingManager : MonoBehaviour
 
     public List<GameObject> BoxNote_List = new List<GameObject>();
     [SerializeField] private EffectManager effectManager;
+    [SerializeField] private ComboManager comboManager;
+    [SerializeField] private ScoreManager scoreManager;
     private void Start()
     {
         //------------------------------------------------------------------------------------------
         effectManager = FindObjectOfType<EffectManager>();
-
-
-
-
-
+        comboManager = FindObjectOfType<ComboManager>();
+        scoreManager = FindObjectOfType<ScoreManager>();
 
 
 
@@ -70,6 +69,16 @@ public class TimingManager : MonoBehaviour
                     Debug.Log(Debug_Note(x));
                     effectManager.Notehit_Effect();
                     effectManager.Judgement_Effect(x);
+                    scoreManager.AddScore(x);
+                    if(x<3)
+                    {
+                        comboManager.Addcombo();
+                    }
+                    else
+                    {
+                        comboManager.RestCombo();
+                    }
+
                     return true;
                 }
             }

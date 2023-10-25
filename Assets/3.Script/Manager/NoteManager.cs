@@ -23,9 +23,16 @@ public class NoteManager : MonoBehaviour
     [SerializeField] private GameObject NotePrefrabs;
 
     [SerializeField] private TimingManager timingManger;
+    [SerializeField] private EffectManager effectManager;
+    [SerializeField] private ComboManager comboManager;
+
     private void Awake()
     {
         timingManger = FindObjectOfType<TimingManager>();
+        effectManager = FindObjectOfType<EffectManager>();
+        comboManager = FindObjectOfType<ComboManager>();
+
+
     }
     private void Update()
     {
@@ -58,7 +65,8 @@ public class NoteManager : MonoBehaviour
             {
                 if(note.getNoteFlag())//노트의 이미지가 활성화가 되어 있다면? 
                 {
-                    Debug.Log("Miss");
+                    effectManager.Judgement_Effect(4);
+                    comboManager.RestCombo();
                 }
             }
             //Destroy(coll.gameObject);
