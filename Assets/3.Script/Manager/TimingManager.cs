@@ -12,8 +12,22 @@ public class TimingManager : MonoBehaviour
     [SerializeField] private RectTransform Center;
 
     public List<GameObject> BoxNote_List = new List<GameObject>();
+    [SerializeField] private EffectManager effectManager;
     private void Start()
     {
+        //------------------------------------------------------------------------------------------
+        effectManager = FindObjectOfType<EffectManager>();
+
+
+
+
+
+
+
+
+
+        //------------------------------------------------------------------------------------------
+
         TimingBox = new Vector2[TimmingRect.Length];
         for(int i=0;i< TimingBox.Length;i++)
         {
@@ -54,8 +68,8 @@ public class TimingManager : MonoBehaviour
                         note.HideNote();
                     }
                     Debug.Log(Debug_Note(x));
-
-
+                    effectManager.Notehit_Effect();
+                    effectManager.Judgement_Effect(x);
                     return true;
                 }
             }
